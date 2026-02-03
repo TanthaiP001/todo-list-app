@@ -1,73 +1,56 @@
-# React + TypeScript + Vite
+# Todo List Application (Front-End Developer Test)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple Todo List web application built as part of a Front-End Developer technical assignment.  
+The project focuses on clean architecture, proper state management, and clear separation of concerns rather than complex UI.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
 
-## React Compiler
+- **React** (Functional Components)
+- **TypeScript**
+- **Vite** (Project setup & bundler)
+- **React Context API + useReducer** (State management)
+- **Fetch API** (API integration)
+- **CSS** (Simple styling, no heavy UI library)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Fetch todo items from an API
+- Display todo list
+- Add new todo
+- Edit existing todo
+- Delete todo
+- Toggle todo status (Done / Not Done)
+- Loading state handling
+- Error state handling
+- Optimistic UI updates (for better UX)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Thought Process & Design Decisions
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Why Vite?
+- Fast development server and build time
+- Lightweight and modern
+- Suitable for small-to-medium React applications
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Why Context API + useReducer?
+- The application state is global but not complex enough to require Redux
+- `useReducer` provides predictable state transitions
+- Context API allows sharing state across components cleanly
+- Easier to reason about data flow during code review and interviews
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Why separate API layer?
+- Keeps components clean and focused on UI
+- Makes it easier to replace or mock APIs in the future
+- Improves maintainability and testability
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Why JSONPlaceholder?
+- Simple mock API for demonstration purposes
+- Allows showcasing async data fetching, loading, and error handling
+- Note: data is not persisted on the server
+
+---
