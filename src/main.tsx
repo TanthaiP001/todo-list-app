@@ -1,3 +1,4 @@
+import "./index.css";
 import App from "./App";
 import { TodoProvider } from "./context/todoContext";
 import React from "react";
