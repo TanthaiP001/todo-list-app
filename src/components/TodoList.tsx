@@ -7,14 +7,25 @@ interface Props {
 
 export default function TodoList({ todos }: Props) {
   if (todos.length === 0) {
-    return <p className="text-gray-500">No todos found.</p>;
+    return (
+      <tbody>
+        <tr>
+          <td
+            colSpan={5}
+            className="py-12 text-center text-neutral-400 text-[15px]"
+          >
+            No tasks yet.
+          </td>
+        </tr>
+      </tbody>
+    );
   }
 
   return (
-    <ul className="space-y-3">
-      {todos.map(todo => (
+    <tbody>
+      {todos.map((todo) => (
         <TodoItem key={todo.id} todo={todo} />
       ))}
-    </ul>
+    </tbody>
   );
 }
